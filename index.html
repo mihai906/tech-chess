@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A website about chess, its history, players, and rules.">
     <link rel="stylesheet" href="style.css">
+    <script src="board.js" defer></script>
     <title>Tech Chess</title>
 </head>
 <body>
@@ -22,8 +23,13 @@
 
         <main class="content">
             <div class="content-grid">
-                <div class="chessboard" role="img" aria-label="An empty chessboard"></div>
-
+                <div
+                    class="chessboard"
+                    role="img"
+                    aria-label="The starting position on a chessboard"
+                    data-fen="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
+                ></div>
+          
                 <div>
                     <h1>Introduction</h1>
                     <p>
