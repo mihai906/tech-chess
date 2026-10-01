@@ -1,0 +1,106 @@
+:root {
+    --light-square: #f0d9b5;
+    --dark-square: #b58863;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+header,
+footer {
+    padding: 1em;
+    background: #333;
+    color: white;
+    text-align: center;
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 12.5rem minmax(0, 1fr) 12.5rem;
+    flex: 1;
+}
+
+.sidebar {
+    padding: 1em;
+    background: #444;
+    color: white;
+}
+
+.sidebar ul {
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar a,
+.sidebar span {
+    display: block;
+    padding: 0.5em;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar a:hover,
+.sidebar a:focus-visible {
+    background: #555;
+}
+
+.content {
+    min-width: 0;
+    padding: 2em;
+    background: #fafafa;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 1.875rem;
+}
+
+.content p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+
+.chessboard {
+    width: 100%;
+    max-width: 31.25rem;
+    aspect-ratio: 1;
+    border: 0.3125rem solid #333;
+    box-sizing: border-box;
+    background: conic-gradient(
+        var(--dark-square) 25%,
+        var(--light-square) 0 50%,
+        var(--dark-square) 0 75%,
+        var(--light-square) 0
+    ) 0 0 / 25% 25%;
+}
+
+@media (max-width: 1024px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        padding: 0.5em 1em;
+    }
+
+    .sidebar:last-child {
+        order: -1;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
