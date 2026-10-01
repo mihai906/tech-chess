@@ -113,3 +113,61 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+.history {
+    box-sizing: border-box;
+    max-width: 750px;
+    margin: 40px auto 0;
+    padding: 35px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.history-title {
+    margin-top: 0;
+    font-family: Georgia, serif;
+    font-size: 42px;
+    text-align: center;
+}
+
+.history h3 {
+    margin-top: 32px;
+    font-size: 24px;
+}
+
+.history p {
+    line-height: 1.8;
+}
+
+.history figure {
+    margin: 24px 0 40px;
+    text-align: center;
+}
+
+.history img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.history-image-small {
+    width: 400px;
+}
+
+.history figcaption {
+    margin-top: 8px;
+    color: #555;
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .history {
+        padding: 20px;
+    }
+
+    .history-title {
+        font-size: 32px;
+    }
+}
