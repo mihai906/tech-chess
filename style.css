@@ -186,28 +186,28 @@ footer {
     outline-offset: 2px;
 }
 
-.player-list {
+.entry-list {
     padding-left: 22px;
 }
 
-.player-list li + li {
+.entry-list li + li {
     margin-top: 45px;
 }
 
-.player-list h2 {
+.entry-list h2 {
     margin: 0 0 10px;
     font-size: 1.25rem;
 }
 
-.players-page p {
+.entry-page p {
     font-size: 1.125rem;
 }
 
-.player-list figure {
+.entry-list figure {
     margin-bottom: 0;
 }
 
-.player-image-small {
+.entry-image-small {
     width: 400px;
 }
 
