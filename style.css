@@ -114,7 +114,7 @@ footer {
     }
 }
 
-.history {
+.content-card {
     box-sizing: border-box;
     max-width: 750px;
     margin: 40px auto 0;
@@ -124,7 +124,7 @@ footer {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.history-title {
+.card-title {
     margin-top: 0;
     font-family: Georgia, serif;
     font-size: 42px;
@@ -136,16 +136,16 @@ footer {
     font-size: 24px;
 }
 
-.history p {
+.content-card p {
     line-height: 1.8;
 }
 
-.history figure {
+.content-card figure {
     margin: 24px 0 40px;
     text-align: center;
 }
 
-.history img {
+.content-card img {
     display: block;
     max-width: 100%;
     height: auto;
@@ -156,18 +156,57 @@ footer {
     width: 400px;
 }
 
-.history figcaption {
+.content-card figcaption {
     margin-top: 8px;
     color: #555;
     font-style: italic;
 }
 
 @media (max-width: 600px) {
-    .history {
+    .content-card {
         padding: 20px;
     }
 
-    .history-title {
+    .card-title {
         font-size: 32px;
     }
+}
+
+.content-card a {
+    color: #1a4c9e;
+    text-decoration: none;
+}
+
+.content-card a:hover {
+    text-decoration: underline;
+}
+
+.content-card a:focus-visible {
+    outline: 2px solid #1a4c9e;
+    outline-offset: 2px;
+}
+
+.player-list {
+    padding-left: 22px;
+}
+
+.player-list li + li {
+    margin-top: 45px;
+}
+
+.player-list h2 {
+    margin: 0 0 10px;
+    font-size: 1.25rem;
+}
+
+.players-page p {
+    font-size: 1.125rem;
+}
+
+.player-list figure {
+    margin-bottom: 0;
+}
+
+.player-image-small {
+    width: 400px;
 }
