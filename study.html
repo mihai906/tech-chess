@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how chess pieces move, the special moves, and how a game ends.">
+    <link rel="stylesheet" href="style.css">
+    <script src="board.js" defer></script>
+    <title>Rules of Chess</title>
+</head>
+<body>
+    <header>Tech Chess</header>
+    <noscript><p class="script-warning">The chess diagrams need JavaScript to show their pieces.</p></noscript>
+
+    <div class="main-layout">
+        <nav class="sidebar" aria-label="Main menu">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><span>Play</span></li>
+                <li><a href="study.html" aria-current="page">Learn</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <article class="content-card rules-page">
+                <h1 class="card-title">Rules of Chess</h1>
+                <p class="rules-intro">
+                    Each piece moves in its own way. The red marks on the diagrams show
+                    where a piece can move or capture from the position shown.
+                </p>
+                <nav class="rules-nav" aria-label="On this page">
+                    <a href="#piece-movement">Moving the pieces</a>
+                    <a href="#special-moves">Special moves</a>
+                    <a href="#end-of-game">End of the game</a>
+                </nav>
+
+                <h2 id="piece-movement">Moving the pieces</h2>
+                <section class="rule-block" aria-labelledby="pawn-title">
+                    <div class="rule-text">
+                        <h3 id="pawn-title">Pawn</h3>
+                        <p>
+                            A pawn moves <strong>one square forward</strong>. On its first
+                            move, it may move two squares if both squares are empty.
+                            It captures one square diagonally forward and cannot move
+                            backward or jump over a piece.
+                        </p>
+                        <p>Promotion and <em>en passant</em> are explained below.</p>
+                    </div>
+                    <figure class="rule-diagram">
+                        <div class="chessboard" role="img" aria-label="White pawns on c3 and g2: forward moves are marked in red and captures on b4 and d4 are circled" data-fen="8/8/8/8/1n1r4/2P5/6P1/8" data-moves="c4 g3 g4" data-captures="b4 d4"></div>
+                        <figcaption>Pawn moves and captures</figcaption>
+                    </figure>
+                </section>
+
+                <section class="rule-block reverse" aria-labelledby="knight-title">
+                    <div class="rule-text">
+                        <h3 id="knight-title">Knight</h3>
+                        <p>
+                            A knight moves in an <strong>L shape</strong>: two squares in
+                            one direction and one to the side. It is the only piece
+                            that can jump over other pieces.
+                        </p>
+                        <p>From the centre, it can reach up to eight squares.</p>
+                    </div>
+                    <figure class="rule-diagram">
+                        <div class="chessboard" role="img" aria-label="A knight on d4 with its eight possible moves marked" data-fen="8/8/8/8/3N4/8/8/8" data-moves="c6 e6 b5 f5 b3 f3 c2 e2"></div>
+                        <figcaption>Knight moves</figcaption>
+                    </figure>
+                </section>
+
+                <section class="rule-block" aria-labelledby="bishop-title">
+                    <div class="rule-text">
+                        <h3 id="bishop-title">Bishop</h3>
+                        <p>
+                            A bishop moves diagonally as far as it likes, provided
+                            nothing blocks its path. It always stays on squares of
+                            the same colour.
+                        </p>
+                    </div>
+                    <figure class="rule-diagram">
+                        <div class="chessboard" role="img" aria-label="A bishop on d4 with its diagonal moves marked" data-fen="8/8/8/8/3B4/8/8/8" data-moves="h8 a7 g7 b6 f6 c5 e5 c3 e3 b2 f2 a1 g1"></div>
+                        <figcaption>Bishop moves</figcaption>
+                    </figure>
+                </section>
+
+                <section class="rule-block reverse" aria-labelledby="rook-title">
+                    <div class="rule-text">
+                        <h3 id="rook-title">Rook</h3>
+                        <p>
+                            A rook moves along a rank or file: horizontally or
+                            vertically. It may travel any number of squares, but
+                            cannot jump over another piece.
+                        </p>
+                    </div>
+                    <figure class="rule-diagram">
+                        <div class="chessboard" role="img" aria-label="A rook on d4 with its horizontal and vertical moves marked" data-fen="8/8/8/8/3R4/8/8/8" data-moves="d8 d7 d6 d5 a4 b4 c4 e4 f4 g4 h4 d3 d2 d1"></div>
+                        <figcaption>Rook moves</figcaption>
+                    </figure>
+                </section>
+
+                <section class="rule-block" aria-labelledby="queen-title">
+                    <div class="rule-text">
+                        <h3 id="queen-title">Queen</h3>
+                        <p>
+                            A queen combines the moves of the rook and bishop. It
+                            moves along a rank, file, or diagonal for any number of
+                            squares, as long as its path is clear.
+                        </p>
+                    </div>
+                    <figure class="rule-diagram">
+                        <div class="chessboard" role="img" aria-label="A queen on d4 with its possible moves marked" data-fen="8/8/8/8/3Q4/8/8/8" data-moves="d8 h8 a7 d7 g7 b6 d6 f6 c5 d5 e5 a4 b4 c4 e4 f4 g4 h4 c3 d3 e3 b2 d2 f2 a1 d1 g1"></div>
+                        <figcaption>Queen moves</figcaption>
+                    </figure>
+                </section>
+
+                <section class="rule-block reverse" aria-labelledby="king-title">
+                    <div class="rule-text">
+                        <h3 id="king-title">King</h3>
+                        <p>
+                            A king moves <strong>one square</strong> in any direction.
+                            It cannot move onto a square attacked by an opponent's
+                            piece. Keeping the king safe is the main aim of the game.
+                        </p>
+                        <p>Castling is its special move.</p>
+                    </div>
+                    <figure class="rule-diagram">
+                        <div class="chessboard" role="img" aria-label="A king on d4 with the eight adjacent squares marked" data-fen="8/8/8/8/3K4/8/8/8" data-moves="c5 d5 e5 c4 e4 c3 d3 e3"></div>
+                        <figcaption>King moves on an empty board</figcaption>
+                    </figure>
+                </section>
+
+                <h2 id="special-moves">Special moves</h2>
+                <section class="special-rule" aria-labelledby="castling-title">
+                    <h3 id="castling-title">Castling</h3>
+                    <p>
+                        Castling moves the king two squares toward a rook, then places
+                        that rook on the square the king crossed. You can castle only
+                        if neither piece has moved, the squares between them are empty,
+                        the king is not in check, and it does not cross or land on an
+                        attacked square.
+                    </p>
+                    <div class="rule-diagrams">
+                        <figure>
+                            <div class="chessboard" role="img" aria-label="White king on e1 and rooks on a1 and h1 before castling" data-fen="8/8/8/8/8/8/8/R3K2R"></div>
+                            <figcaption>Before castling</figcaption>
+                        </figure>
+                        <figure>
+                            <div class="chessboard" role="img" aria-label="Queenside castling: king on c1 and rook on d1" data-fen="8/8/8/8/8/8/8/2KR3R"></div>
+                            <figcaption>Queenside castling</figcaption>
+                        </figure>
+                        <figure>
+                            <div class="chessboard" role="img" aria-label="Kingside castling: king on g1 and rook on f1" data-fen="8/8/8/8/8/8/8/R4RK1"></div>
+                            <figcaption>Kingside castling</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="special-rule" aria-labelledby="promotion-title">
+                    <h3 id="promotion-title">Pawn promotion</h3>
+                    <p>
+                        When a pawn reaches the farthest rank, it must become a queen,
+                        rook, bishop, or knight of the same colour. The new piece
+                        replaces the pawn as part of that move. A queen is the usual
+                        choice, but another piece can sometimes be more useful.
+                    </p>
+                    <div class="rule-diagrams">
+                        <figure>
+                            <div class="chessboard" role="img" aria-label="White pawn on g7, one move from promotion" data-fen="4k3/6P1/8/8/8/8/8/4K3"></div>
+                            <figcaption>Pawn on g7</figcaption>
+                        </figure>
+                        <figure>
+                            <div class="chessboard" role="img" aria-label="White queen on g8 after the pawn promotes" data-fen="4k1Q1/8/8/8/8/8/8/4K3"></div>
+                            <figcaption>Pawn promoted to a queen</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="special-rule" aria-labelledby="en-passant-title">
+                    <h3 id="en-passant-title">En passant</h3>
+                    <p>
+                        If an opposing pawn moves two squares from its starting rank
+                        and lands beside your pawn, you may capture it as though it had
+                        moved only one square. You must do this <strong>immediately on
+                        your next move</strong>, or the chance is lost.
+                    </p>
+                    <div class="rule-diagrams">
+                        <figure>
+                            <div class="chessboard" role="img" aria-label="White pawn on g5 beside a black pawn that just moved to f5; capture square f6 marked" data-fen="8/8/8/5pP1/8/8/8/8" data-captures="f6"></div>
+                            <figcaption>Black has just moved to f5</figcaption>
+                        </figure>
+                        <figure>
+                            <div class="chessboard" role="img" aria-label="White pawn on f6 after capturing en passant; black pawn removed" data-fen="8/8/5P2/8/8/8/8/8"></div>
+                            <figcaption>White captures on f6</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <h2 id="end-of-game">End of the game</h2>
+                <p>
+                    A player wins by <strong>checkmate</strong>: the opponent's king is
+                    under attack and has no legal way to escape. A game can also end
+                    in a draw. Common examples are:
+                </p>
+                <ul class="rules-list">
+                    <li><strong>Stalemate:</strong> the player to move has no legal move, but their king is not in check.</li>
+                    <li><strong>Threefold repetition:</strong> the same position occurs three times with the same player to move.</li>
+                    <li><strong>Fifty-move rule:</strong> each player has made 50 moves without a pawn move or a capture.</li>
+                    <li><strong>Insufficient material:</strong> neither player has enough pieces to force checkmate.</li>
+                    <li><strong>Agreement:</strong> both players agree to a draw.</li>
+                </ul>
+                <div class="rule-diagrams">
+                    <figure>
+                        <div class="chessboard" role="img" aria-label="Black king on g8 in checkmate from the white rook on e8" data-fen="4R1k1/5ppp/8/8/8/8/5PPP/6K1"></div>
+                        <figcaption>Checkmate</figcaption>
+                    </figure>
+                    <figure>
+                        <div class="chessboard" role="img" aria-label="Black king on c8 in stalemate" data-fen="2k5/8/1Q2P3/3K4/8/8/8/8"></div>
+                        <figcaption>Stalemate</figcaption>
+                    </figure>
+                </div>
+            </article>
+        </main>
+
+        <aside class="sidebar" aria-label="More sections">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="tournaments.html">Tournaments</a></li>
+                <li><a href="players.html">Players</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <footer></footer>
+</body>
+</html>
