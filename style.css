@@ -210,3 +210,24 @@ footer {
 .player-image-small {
     width: 400px;
 }
+
+.video-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 750px;
+    margin: 32px auto 0;
+}
+
+.video-row iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+}
+
+@media (max-width: 650px) {
+    .video-row {
+        grid-template-columns: 1fr;
+    }
+}
