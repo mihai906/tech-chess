@@ -371,3 +371,47 @@ footer {
         font-size: 1.7rem;
     }
 }
+
+.sidebar .learn-links {
+    padding-left: 1.25rem;
+}
+
+.sidebar .learn-links a {
+    font-size: 0.95rem;
+}
+
+.coordinates-page {
+    max-width: 750px;
+}
+
+.coordinates-page ul {
+    padding-left: 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+.coordinates-page h2 {
+    margin-top: 2rem;
+    font-family: Georgia, serif;
+}
+
+.coordinates-page .chessboard {
+    margin: 0 auto;
+}
+
+.board-coordinate {
+    align-self: stretch;
+    justify-self: stretch;
+    display: grid;
+    place-items: center;
+    font-size: clamp(0.65rem, 1.25vw, 1.1rem);
+    font-weight: bold;
+}
+
+.board-coordinate.light-square {
+    color: #60432c;
+}
+
+.board-coordinate.dark-square {
+    color: #fff5e5;
+}

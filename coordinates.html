@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to read the coordinates on a chessboard.">
+    <link rel="stylesheet" href="style.css">
+    <script src="board.js" defer></script>
+    <title>Coordinates</title>
+</head>
+<body>
+    <header>Tech Chess</header>
+    <noscript><p class="script-warning">The board coordinates need JavaScript to appear.</p></noscript>
+
+    <div class="main-layout">
+        <nav class="sidebar" aria-label="Main menu">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><span>Play</span></li>
+                <li>
+                    <a href="study.html">Learn</a>
+                    <ul class="learn-links">
+                        <li><a href="coordinates.html" aria-current="page">Coordinates</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <article class="content-card coordinates-page">
+                <h1 class="card-title">Coordinates</h1>
+                <p>
+                    Every square on a chessboard has a name. This makes it possible
+                    to describe moves and positions exactly.
+                </p>
+                <ul>
+                    <li><strong>Ranks</strong> are the horizontal rows, numbered from <strong>1 to 8</strong>.</li>
+                    <li><strong>Files</strong> are the vertical columns, lettered from <strong>a to h</strong>.</li>
+                </ul>
+                <p>
+                    A square's coordinate is its file followed by its rank:
+                    <strong>e4, d5, a1, h8</strong>. The board below is shown from
+                    White's side, so a1 is in the bottom left corner.
+                </p>
+
+                <figure>
+                    <div class="chessboard" role="img" aria-label="Chessboard showing the coordinate of every square, from a1 at the bottom left to h8 at the top right" data-fen="8/8/8/8/8/8/8/8" data-coordinates="true"></div>
+                    <figcaption>Coordinates of all 64 squares</figcaption>
+                </figure>
+
+                <h2>Practice</h2>
+                <p>
+                    Try finding the squares yourself with the
+                    <a href="https://lichess.org/training/coordinate" target="_blank" rel="noopener noreferrer">coordinate trainer on Lichess</a>.
+                </p>
+                <p><a href="study.html">Back to the rules of chess</a></p>
+            </article>
+        </main>
+
+        <aside class="sidebar" aria-label="More sections">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="tournaments.html">Tournaments</a></li>
+                <li><a href="players.html">Players</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <footer></footer>
+</body>
+</html>

@@ -2,6 +2,25 @@ document.querySelectorAll(".chessboard").forEach((board) => {
     const ranks = board.dataset.fen.split("/");
     const content = document.createDocumentFragment();
 
+    if (board.dataset.coordinates === "true") {
+        for (let row = 0; row < 8; row++) {
+            for (let column = 0; column < 8; column++) {
+                const label = document.createElement("span");
+                label.className = "board-coordinate";
+                if ((row + column) % 2 === 0) {
+                    label.classList.add("light-square");
+                } else {
+                    label.classList.add("dark-square");
+                }
+                label.textContent = "abcdefgh"[column] + (8 - row);
+                label.style.gridRow = row + 1;
+                label.style.gridColumn = column + 1;
+                label.setAttribute("aria-hidden", "true");
+                content.append(label);
+            }
+        }
+    }
+
     function addMarker(square, kind) {
         const marker = document.createElement("span");
         marker.className = `board-marker ${kind}`;
