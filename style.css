@@ -415,3 +415,74 @@ footer {
 .board-coordinate.dark-square {
     color: #fff5e5;
 }
+
+.play-page,
+.setup-page {
+    max-width: 620px;
+}
+
+.play-options {
+    display: grid;
+    gap: 1rem;
+    max-width: 340px;
+    margin: 2rem auto 0;
+}
+
+.play-page .play-option,
+.setup-page .play-option {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #444;
+    color: white;
+    font: inherit;
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.play-page a.play-option:hover,
+.play-page a.play-option:focus-visible {
+    background: #555;
+    color: white;
+    text-decoration: none;
+}
+
+.play-option:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.local-form {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 420px;
+    margin: 2rem auto 0;
+}
+
+.local-form label {
+    font-weight: bold;
+}
+
+.local-form input,
+.local-form select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #888;
+    border-radius: 4px;
+    background: white;
+    font: inherit;
+}
+
+.local-form .play-option {
+    margin-top: 1rem;
+}
+
+.setup-back {
+    margin-bottom: 0;
+    text-align: center;
+}

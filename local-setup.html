@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Choose the players and time for a local chess game.">
+    <link rel="stylesheet" href="style.css">
+    <title>Local Game</title>
+</head>
+<body>
+    <header>Tech Chess</header>
+
+    <div class="main-layout">
+        <nav class="sidebar" aria-label="Main menu">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="play.html">Play</a></li>
+                <li>
+                    <a href="study.html">Learn</a>
+                    <ul class="learn-links">
+                        <li><a href="coordinates.html">Coordinates</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <section class="content-card setup-page">
+                <h1 class="card-title">Local Game</h1>
+                <form class="local-form">
+                    <label for="player-one">Player 1 (White)</label>
+                    <input id="player-one" name="player1" type="text" value="Player 1" maxlength="24" required>
+
+                    <label for="player-two">Player 2 (Black)</label>
+                    <input id="player-two" name="player2" type="text" value="Player 2" maxlength="24" required>
+
+                    <label for="game-time">Time per player</label>
+                    <select id="game-time" name="time">
+                        <option value="0">No clock</option>
+                        <option value="3">3 minutes</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10" selected>10 minutes</option>
+                        <option value="15">15 minutes</option>
+                    </select>
+
+                    <button class="play-option" type="submit" disabled>Start game</button>
+                </form>
+                <p class="setup-back"><a href="play.html">Back to Play</a></p>
+            </section>
+        </main>
+
+        <aside class="sidebar" aria-label="More sections">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="tournaments.html">Tournaments</a></li>
+                <li><a href="players.html">Players</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <footer></footer>
+</body>
+</html>
