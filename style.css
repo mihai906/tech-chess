@@ -566,3 +566,103 @@ footer {
 #game-status {
     text-align: center;
 }
+
+.new-game-button {
+    display: block;
+    margin: 1rem auto 0;
+    padding: 0.65rem 1.25rem;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: #444;
+    color: white;
+    font: inherit;
+    cursor: pointer;
+}
+
+.new-game-button:hover,
+.new-game-button:focus-visible {
+    background: #555;
+}
+
+.promotion-dialog {
+    box-sizing: border-box;
+    max-width: calc(100vw - 2rem);
+    padding: 1.5rem;
+    border: 1px solid #333;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    font-family: Arial, sans-serif;
+}
+
+.promotion-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.promotion-dialog h2 {
+    margin-top: 0;
+    font-family: Georgia, serif;
+}
+
+.promotion-options {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+.promotion-options button {
+    display: grid;
+    justify-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    border: 1px solid #888;
+    border-radius: 6px;
+    background: #fafafa;
+    font: inherit;
+    cursor: pointer;
+}
+
+.promotion-options button:hover,
+.promotion-options button:focus-visible {
+    border-color: #c52f2f;
+    background: #fff0ee;
+}
+
+.promotion-options img {
+    width: 3.5rem;
+    height: 3.5rem;
+    object-fit: contain;
+}
+
+.promotion-cancel {
+    margin-top: 1rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #888;
+    border-radius: 6px;
+    background: white;
+    font: inherit;
+    cursor: pointer;
+}
+
+.game-page .game-square img {
+    user-select: none;
+    -webkit-user-drag: none;
+    touch-action: none;
+}
+
+.game-square img.movable-piece {
+    cursor: grab;
+}
+
+.game-square img.movable-piece:active {
+    cursor: grabbing;
+}
+
+.drag-preview {
+    position: fixed;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+    pointer-events: none;
+    opacity: 0.85;
+}

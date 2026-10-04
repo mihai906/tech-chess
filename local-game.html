@@ -39,7 +39,28 @@
                     <p id="white-clock" class="game-clock" aria-label="White time remaining"></p>
                 </div>
                 <p id="game-status" role="status">White to move</p>
+                <button id="new-game" class="new-game-button" type="button">New game</button>
             </section>
+
+            <dialog id="promotion-dialog" class="promotion-dialog" aria-labelledby="promotion-title">
+                <h2 id="promotion-title">Promote pawn</h2>
+                <p>Choose a piece:</p>
+                <div class="promotion-options">
+                    <button type="button" data-promotion="q">
+                        <img src="pieces/wQ.svg" alt=""><span>Queen</span>
+                    </button>
+                    <button type="button" data-promotion="r">
+                        <img src="pieces/wR.svg" alt=""><span>Rook</span>
+                    </button>
+                    <button type="button" data-promotion="b">
+                        <img src="pieces/wB.svg" alt=""><span>Bishop</span>
+                    </button>
+                    <button type="button" data-promotion="n">
+                        <img src="pieces/wN.svg" alt=""><span>Knight</span>
+                    </button>
+                </div>
+                <button id="cancel-promotion" class="promotion-cancel" type="button">Cancel</button>
+            </dialog>
         </main>
 
         <aside class="sidebar" aria-label="More sections">
