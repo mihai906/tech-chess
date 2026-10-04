@@ -20,6 +20,15 @@ function playerName(parameter, defaultName) {
 const whitePlayer = playerName("player1", "Player 1");
 const blackPlayer = playerName("player2", "Player 2");
 
+let timeMinutes = 10;
+const timeSetting = settings.get("time");
+if (timeSetting !== null) {
+  const requestedMinutes = Number(timeSetting);
+  if ([0, 3, 5, 10, 15].includes(requestedMinutes)) {
+    timeMinutes = requestedMinutes;
+  }
+}
+
 document.querySelector("#white-player").textContent = `${whitePlayer} (White)`;
 document.querySelector("#black-player").textContent = `${blackPlayer} (Black)`;
 
@@ -80,8 +89,20 @@ function renderBoard() {
 }
 
 const status = document.querySelector("#game-status");
+const whiteClock = document.querySelector("#white-clock");
+const blackClock = document.querySelector("#black-clock");
+let whiteTimeLeft = timeMinutes * 60 * 1000;
+let blackTimeLeft = timeMinutes * 60 * 1000;
+let lastClockUpdate = 0;
+let clockInterval = null;
+let timeWinner = null;
 
 function updateStatus() {
+  if (timeWinner !== null) {
+    status.textContent = `${timeWinner} wins on time`;
+    return;
+  }
+
   let currentPlayer = "White";
   if (game.turn() === "b") {
     currentPlayer = "Black";
@@ -109,6 +130,64 @@ function updateStatus() {
   status.textContent = `${currentPlayer} to move`;
 }
 
+function formatTime(milliseconds) {
+  const totalSeconds = Math.ceil(milliseconds / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = String(totalSeconds % 60).padStart(2, "0");
+  return `${minutes}:${seconds}`;
+}
+
+function renderClocks() {
+  if (timeMinutes === 0) {
+    whiteClock.hidden = true;
+    blackClock.hidden = true;
+    return;
+  }
+
+  whiteClock.textContent = formatTime(whiteTimeLeft);
+  blackClock.textContent = formatTime(blackTimeLeft);
+  whiteClock.classList.remove("active");
+  blackClock.classList.remove("active");
+
+  if (timeWinner === null && !game.isGameOver()) {
+    if (game.turn() === "w") {
+      whiteClock.classList.add("active");
+    } else {
+      blackClock.classList.add("active");
+    }
+  }
+}
+
+function tickClock() {
+  if (timeMinutes === 0 || timeWinner !== null || game.isGameOver()) {
+    return;
+  }
+
+  const now = Date.now();
+  const elapsed = Math.max(0, now - lastClockUpdate);
+  lastClockUpdate = now;
+
+  if (game.turn() === "w") {
+    whiteTimeLeft = Math.max(0, whiteTimeLeft - elapsed);
+    if (whiteTimeLeft === 0) {
+      timeWinner = "Black";
+    }
+  } else {
+    blackTimeLeft = Math.max(0, blackTimeLeft - elapsed);
+    if (blackTimeLeft === 0) {
+      timeWinner = "White";
+    }
+  }
+
+  renderClocks();
+
+  if (timeWinner !== null) {
+    window.clearInterval(clockInterval);
+    clearSelection();
+    updateStatus();
+  }
+}
+
 let selectedSquare = null;
 
 function clearSelection() {
@@ -120,17 +199,28 @@ function clearSelection() {
 
 renderBoard();
 updateStatus();
+renderClocks();
+
+if (timeMinutes > 0) {
+  lastClockUpdate = Date.now();
+  clockInterval = window.setInterval(tickClock, 200);
+}
 
 board.addEventListener("click", (event) => {
   const square = event.target.closest(".game-square");
 
-  if (square === null) {
+  if (square === null || timeWinner !== null) {
     return;
   }
 
   const coordinate = square.dataset.square;
 
   if (selectedSquare !== null && square.classList.contains("possible-move")) {
+    tickClock();
+    if (timeWinner !== null) {
+      return;
+    }
+
     const movingPiece = game.get(selectedSquare);
     const move = { from: selectedSquare, to: coordinate };
 
@@ -139,9 +229,15 @@ board.addEventListener("click", (event) => {
     }
 
     game.move(move);
+    lastClockUpdate = Date.now();
     clearSelection();
     renderBoard();
     updateStatus();
+    renderClocks();
+
+    if (game.isGameOver()) {
+      window.clearInterval(clockInterval);
+    }
     return;
   }
 

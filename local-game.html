@@ -29,9 +29,15 @@
         <main class="content">
             <section class="content-card game-page">
                 <h1 class="card-title">Local Game</h1>
-                <p id="black-player">Player 2</p>
+                <div class="game-player">
+                    <p id="black-player">Player 2</p>
+                    <p id="black-clock" class="game-clock" aria-label="Black time remaining"></p>
+                </div>
                 <div id="game-board" class="chessboard" aria-label="Chessboard"></div>
-                <p id="white-player">Player 1</p>
+                <div class="game-player">
+                    <p id="white-player">Player 1</p>
+                    <p id="white-clock" class="game-clock" aria-label="White time remaining"></p>
+                </div>
                 <p id="game-status" role="status">White to move</p>
             </section>
         </main>

@@ -527,3 +527,42 @@ footer {
 .game-square.possible-move {
     box-shadow: inset 0 0 0 4px rgba(197, 47, 47, 0.65);
 }
+
+.game-player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 31.25rem;
+    margin: 0 auto;
+}
+
+.game-player p:first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.game-clock {
+    flex-shrink: 0;
+    min-width: 4rem;
+    padding: 0.25rem 0.5rem;
+    border: 2px solid #333;
+    border-radius: 6px;
+    font-variant-numeric: tabular-nums;
+    font-weight: bold;
+    text-align: center;
+}
+
+.game-clock.active {
+    border-color: #c52f2f;
+    background: #c52f2f;
+    color: white;
+}
+
+.game-clock[hidden] {
+    display: none;
+}
+
+#game-status {
+    text-align: center;
+}
