@@ -26,32 +26,79 @@ const pieceNames = {
   k: "king"
 };
 
-for (const rank of game.board()) {
-  for (const piece of rank) {
-    if (piece === null) {
-      continue;
+function renderBoard() {
+  for (const square of board.querySelectorAll(".game-square")) {
+    square.replaceChildren();
+    square.setAttribute("aria-label", square.dataset.square);
+  }
+
+  for (const rank of game.board()) {
+    for (const piece of rank) {
+      if (piece === null) {
+        continue;
+      }
+
+      const square = board.querySelector(`[data-square="${piece.square}"]`);
+      const image = document.createElement("img");
+
+      image.src = `pieces/${piece.color}${piece.type.toUpperCase()}.svg`;
+      image.alt = "";
+
+      let color = "Black";
+      if (piece.color === "w") {
+        color = "White";
+      }
+
+      square.setAttribute(
+        "aria-label",
+        `${color} ${pieceNames[piece.type]} on ${piece.square}`
+      );
+      square.append(image);
     }
-
-    const square = board.querySelector(`[data-square="${piece.square}"]`);
-    const image = document.createElement("img");
-
-    image.src = `pieces/${piece.color}${piece.type.toUpperCase()}.svg`;
-    image.alt = "";
-
-    let color = "Black";
-    if (piece.color === "w") {
-      color = "White";
-    }
-
-    square.setAttribute(
-      "aria-label",
-      `${color} ${pieceNames[piece.type]} on ${piece.square}`
-    );
-    square.append(image);
   }
 }
 
+const status = document.querySelector("#game-status");
+
+function updateStatus() {
+  let currentPlayer = "White";
+  if (game.turn() === "b") {
+    currentPlayer = "Black";
+  }
+
+  if (game.isCheckmate()) {
+    let winner = "Black";
+    if (currentPlayer === "Black") {
+      winner = "White";
+    }
+    status.textContent = `${winner} wins by checkmate`;
+    return;
+  }
+
+  if (game.isGameOver()) {
+    status.textContent = "Draw";
+    return;
+  }
+
+  if (game.inCheck()) {
+    status.textContent = `${currentPlayer} to move — check`;
+    return;
+  }
+
+  status.textContent = `${currentPlayer} to move`;
+}
+
 let selectedSquare = null;
+
+function clearSelection() {
+  for (const marked of board.querySelectorAll(".selected, .possible-move")) {
+    marked.classList.remove("selected", "possible-move");
+  }
+  selectedSquare = null;
+}
+
+renderBoard();
+updateStatus();
 
 board.addEventListener("click", (event) => {
   const square = event.target.closest(".game-square");
@@ -60,15 +107,30 @@ board.addEventListener("click", (event) => {
     return;
   }
 
-  for (const marked of board.querySelectorAll(".selected, .possible-move")) {
-    marked.classList.remove("selected", "possible-move");
+  const coordinate = square.dataset.square;
+
+  if (selectedSquare !== null && square.classList.contains("possible-move")) {
+    const movingPiece = game.get(selectedSquare);
+    const move = { from: selectedSquare, to: coordinate };
+
+    if (movingPiece.type === "p" && (coordinate[1] === "1" || coordinate[1] === "8")) {
+      move.promotion = "q";
+    }
+
+    game.move(move);
+    clearSelection();
+    renderBoard();
+    updateStatus();
+    return;
   }
 
-  selectedSquare = null;
+  clearSelection();
 
-  const coordinate = square.dataset.square;
+  if (game.isGameOver()) {
+    return;
+  }
+
   const piece = game.get(coordinate);
-
   if (piece === undefined || piece.color !== game.turn()) {
     return;
   }
