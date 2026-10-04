@@ -51,6 +51,8 @@ for (const rank of game.board()) {
   }
 }
 
+let selectedSquare = null;
+
 board.addEventListener("click", (event) => {
   const square = event.target.closest(".game-square");
 
@@ -58,5 +60,24 @@ board.addEventListener("click", (event) => {
     return;
   }
 
-  console.log(square.dataset.square);
+  for (const marked of board.querySelectorAll(".selected, .possible-move")) {
+    marked.classList.remove("selected", "possible-move");
+  }
+
+  selectedSquare = null;
+
+  const coordinate = square.dataset.square;
+  const piece = game.get(coordinate);
+
+  if (piece === undefined || piece.color !== game.turn()) {
+    return;
+  }
+
+  selectedSquare = coordinate;
+  square.classList.add("selected");
+
+  for (const move of game.moves({ square: coordinate, verbose: true })) {
+    const destination = board.querySelector(`[data-square="${move.to}"]`);
+    destination.classList.add("possible-move");
+  }
 });

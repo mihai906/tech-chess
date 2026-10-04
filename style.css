@@ -501,7 +501,7 @@ footer {
 }
 
 .game-square:focus-visible {
-    outline: 3px solid #1a4c9e;
+    outline: 3px solid #c52f2f;
     outline-offset: -3px;
 }
 
@@ -509,4 +509,12 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.game-square.selected {
+    box-shadow: inset 0 0 0 4px #c52f2f;
+}
+
+.game-square.possible-move {
+    box-shadow: inset 0 0 0 4px rgba(197, 47, 47, 0.65);
 }
