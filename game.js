@@ -97,6 +97,8 @@ const whiteClock = document.querySelector("#white-clock");
 const blackClock = document.querySelector("#black-clock");
 const promotionDialog = document.querySelector("#promotion-dialog");
 const promotionButtons = promotionDialog.querySelectorAll("[data-promotion]");
+const moveHistory = document.querySelector("#move-history");
+const emptyHistory = document.querySelector("#empty-history");
 let whiteTimeLeft = timeMinutes * 60 * 1000;
 let blackTimeLeft = timeMinutes * 60 * 1000;
 let lastClockUpdate = 0;
@@ -106,6 +108,29 @@ let selectedSquare = null;
 let pendingPromotion = null;
 let activeDrag = null;
 let ignoreNextClick = false;
+
+function renderHistory() {
+  const moves = game.history();
+  moveHistory.replaceChildren();
+  emptyHistory.hidden = moves.length > 0;
+
+  for (let index = 0; index < moves.length; index += 2) {
+    const row = document.createElement("li");
+    const whiteMove = document.createElement("span");
+    whiteMove.textContent = moves[index];
+    row.append(whiteMove);
+
+    if (moves[index + 1] !== undefined) {
+      const blackMove = document.createElement("span");
+      blackMove.textContent = moves[index + 1];
+      row.append(blackMove);
+    }
+
+    moveHistory.append(row);
+  }
+
+  moveHistory.scrollTop = moveHistory.scrollHeight;
+}
 
 function updateStatus() {
   if (timeWinner !== null) {
@@ -233,6 +258,7 @@ function finishMove(move) {
   renderBoard();
   updateStatus();
   renderClocks();
+  renderHistory();
 
   if (game.isGameOver() && clockInterval !== null) {
     window.clearInterval(clockInterval);
@@ -319,12 +345,14 @@ function newGame() {
   renderBoard();
   updateStatus();
   renderClocks();
+  renderHistory();
   startClock();
 }
 
 renderBoard();
 updateStatus();
 renderClocks();
+renderHistory();
 startClock();
 
 board.addEventListener("click", (event) => {
