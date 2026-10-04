@@ -28,7 +28,7 @@
         <main class="content">
             <section class="content-card setup-page">
                 <h1 class="card-title">Local Game</h1>
-                <form class="local-form">
+                <form class="local-form" action="local-game.html" method="get">
                     <label for="player-one">Player 1 (White)</label>
                     <input id="player-one" name="player1" type="text" value="Player 1" maxlength="24" required>
 
@@ -44,7 +44,7 @@
                         <option value="15">15 minutes</option>
                     </select>
 
-                    <button class="play-option" type="submit" disabled>Start game</button>
+                    <button class="play-option" type="submit">Start game</button>
                 </form>
                 <p class="setup-back"><a href="play.html">Back to Play</a></p>
             </section>

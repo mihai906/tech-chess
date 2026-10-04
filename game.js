@@ -1,6 +1,27 @@
 import { Chess } from "https://esm.run/chess.js@1.4.0";
 
 const game = new Chess();
+const settings = new URLSearchParams(window.location.search);
+
+function playerName(parameter, defaultName) {
+  const value = settings.get(parameter);
+  if (value === null) {
+    return defaultName;
+  }
+
+  const name = value.trim().slice(0, 24);
+  if (name === "") {
+    return defaultName;
+  }
+
+  return name;
+}
+
+const whitePlayer = playerName("player1", "Player 1");
+const blackPlayer = playerName("player2", "Player 2");
+
+document.querySelector("#white-player").textContent = `${whitePlayer} (White)`;
+document.querySelector("#black-player").textContent = `${blackPlayer} (Black)`;
 
 const board = document.querySelector("#game-board");
 const files = "abcdefgh";

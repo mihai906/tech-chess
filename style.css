@@ -451,6 +451,15 @@ footer {
     text-decoration: none;
 }
 
+.setup-page button.play-option {
+    cursor: pointer;
+}
+
+.setup-page button.play-option:hover,
+.setup-page button.play-option:focus-visible {
+    background: #555;
+}
+
 .play-option:disabled {
     opacity: 0.55;
     cursor: not-allowed;
